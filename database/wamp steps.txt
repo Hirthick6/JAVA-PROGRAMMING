@@ -1,0 +1,39 @@
+mysql> CREATE DATABASE jack;
+
+mysql> show databases;
+
+mysql> use jack;
+
+
+CREATE TABLE Faculty (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    qualification VARCHAR(255),
+    designation VARCHAR(255),
+    subject VARCHAR(255),
+    department VARCHAR(255),
+    salary DOUBLE
+);
+
+select*from Faculty;
+
+
+
+extraaaaaaaaaaaaaaaaaaaaaaaaaa
+-----------
+
+
+-- Inserting a single record
+INSERT INTO lotus (name, qualification, designation, subject, department, salary)
+VALUES ('John Doe', 'Ph.D.', 'Professor', 'Mathematics', 'Math Department', 75000.00);
+
+-- Inserting multiple records
+INSERT INTO lotus (name, qualification, designation, subject, department, salary)
+VALUES
+    ('Jane Doe', 'M.Sc.', 'Associate Professor', 'Physics', 'Physics Department', 60000.00),
+    ('Bob Smith', 'B.Sc.', 'Assistant Professor', 'Computer Science', 'Computer Science Department', 50000.00);
+----------------------------------------
+
+
+
+select*from Faculty;

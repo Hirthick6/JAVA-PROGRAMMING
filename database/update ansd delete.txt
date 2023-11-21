@@ -1,0 +1,27 @@
+// Updating salary of a specific faculty member
+String updateSalarySQL = "UPDATE faculty SET salary = ? WHERE name = ?";
+PreparedStatement updateSalaryStatement = connection.prepareStatement(updateSalarySQL);
+updateSalaryStatement.setDouble(1, newSalary); // Set the new salary
+updateSalaryStatement.setString(2, "John Doe"); // Specify the faculty member's name
+updateSalaryStatement.executeUpdate();
+
+
+// Deleting a specific faculty member
+String deleteFacultySQL = "DELETE FROM faculty WHERE name = ?";
+PreparedStatement deleteFacultyStatement = connection.prepareStatement(deleteFacultySQL);
+deleteFacultyStatement.setString(1, "John Doe"); // Specify the faculty member's name
+deleteFacultyStatement.executeUpdate();
+
+
+// Updating salary of a specific faculty member
+String updateSalarySQL = "UPDATE faculty SET salary = ? WHERE name = ?";
+PreparedStatement updateSalaryStatement = connection.prepareStatement(updateSalarySQL);
+updateSalaryStatement.setDouble(1, newSalary); // Set the new salary
+updateSalaryStatement.setString(2, "John Doe"); // Specify the faculty member's name
+updateSalaryStatement.executeUpdate();
+
+// Deleting a specific faculty member
+String deleteFacultySQL = "DELETE FROM faculty WHERE name = ?";
+PreparedStatement deleteFacultyStatement = connection.prepareStatement(deleteFacultySQL);
+deleteFacultyStatement.setString(1, "John Doe"); // Specify the faculty member's name
+deleteFacultyStatement.executeUpdate();

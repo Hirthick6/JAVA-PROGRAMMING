@@ -1,0 +1,90 @@
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.awt.*;
+
+public class DebateApplet2final extends Applet implements Runnable {
+    private String[] participants = { "dhanush", "yash", "arjundas" };
+    private AudioClip[] sounds = new AudioClip[3];
+    private int currentParticipant = 0;
+    private Image[] images = new Image[3];
+    private Image microphoneIcon;
+
+    public void init() {
+        setSize(600, 400); // Increased the width to accommodate more spacing
+        setBackground(Color.LIGHT_GRAY); // Set background color (LIGHT GRAY)
+
+        sounds[0] = getAudioClip(getCodeBase(), "dhanush.wav");
+        sounds[1] = getAudioClip(getCodeBase(), "yash.wav");
+        sounds[2] = getAudioClip(getCodeBase(), "arjundas.wav");
+
+        images[0] = getImage(getCodeBase(), "dhanush.jpeg");
+        images[1] = getImage(getCodeBase(), "yash.jpeg");
+        images[2] = getImage(getCodeBase(), "arjundas.jpeg");
+
+        microphoneIcon = getImage(getCodeBase(), "microphone.jpeg");
+    }
+
+    public void start() {
+        Thread debateThread = new Thread(this);
+        debateThread.start();
+    }
+
+    public void run() {
+        while (true) {
+            // Stop the sound of the previous participant (if applicable)
+            if (currentParticipant > 0) {
+                sounds[currentParticipant - 1].stop();
+            }
+
+            // Play the sound for the current participant
+            sounds[currentParticipant].play();
+
+            try {
+                Thread.sleep(5000); // Wait for 5 seconds (Simulating speech time)
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Stop the sound of the current participant
+            sounds[currentParticipant].stop();
+
+            currentParticipant = (currentParticipant + 1) % participants.length; // Next participant in the round-robin
+
+            try {
+                Thread.sleep(1000); // Wait for 1 second before the next person speaks
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            repaint(); // Call repaint to update the applet's display after each speaking turn
+        }
+    }
+
+    public void paint(Graphics g) {
+        // Draw the image of the current participant
+        Image currentImage = images[currentParticipant];
+        g.drawImage(currentImage, 150, 100, 100, 100, this);
+
+        // Draw the speech cloud for the current speaker
+        g.setColor(Color.WHITE);
+        g.fillRoundRect(120, 70, 150, 50, 20, 20);
+        g.setColor(Color.BLACK);
+        g.drawString(participants[currentParticipant] + ": Speaking...", 130, 100);
+
+        // Draw the microphone icon for the current speaker
+        g.drawImage(microphoneIcon, 95, 85, 20, 20, this);
+
+        // Draw the listening indicators for other participants
+        int spacing = 150; // Increased spacing between the images of listeners
+        for (int i = 0; i < participants.length; i++) {
+            if (i != currentParticipant) {
+                Image listenerImage = images[i];
+                g.drawImage(listenerImage, 50 + i * spacing, 250, 100, 100, this);
+                g.setColor(Color.WHITE);
+                g.fillRoundRect(25 + i * spacing, 220, 150, 40, 20, 20);
+                g.setColor(Color.BLACK);
+                g.drawString("Listening", 45 + i * spacing, 245);
+            }
+        }
+    }
+}

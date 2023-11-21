@@ -1,0 +1,4 @@
+javac StateInfo.java StateInfoServer.java StateInfoClient.java StateDetails.java
+start rmiregistry
+java StateInfoServer
+java StateInfoClient

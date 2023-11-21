@@ -1,0 +1,85 @@
+package ATM;
+import java.util.*;
+class atm {
+public static void main( String args[] ) {
+//declare and initialize balance, withdraw, and deposit
+int balance = 50000;
+int withdraw, deposit;
+//create scanner class object to get choice of user
+Scanner sc = new Scanner(System.in);
+while(true)
+{
+System.out.println( "Welcome to ATM ... " );
+System.out.println( "Select 1 for Withdraw" );
+System.out.println( "Select 2 for Deposit" );
+System.out.println( "Select 3 for Check Balance" );
+System.out.println( "Select 4 for EXIT" );
+System.out.print( "Select the appropriate options you want to perform:" );
+//get the user selected option
+int op = sc.nextInt( );
+switch( op )
+{
+case 1: System.out.print( "Enter the amount to be withdrawn :" );
+// accept the withdraw amount from the user
+withdraw = sc.nextInt();
+//check whether the balance is greater than or equal to the withdrawal amount
+withdraw( balance, withdraw);
+break;
+case 2: System.out.print( "Enter the amount to be deposited :" );
+//accept the deposit amount from the user
+deposit = sc.nextInt();
+// call the function and add the deposit amount to the total balance
+deposit( balance, deposit );
+break;
+case 3:
+// printing the total balance of the user
+printBalance( balance );
+System.out.println(" ");
+break;
+case 4:
+// exit from the menu
+System.exit( 0 );
+}
+}
+}
+// function to print the current balance in an account
+public static void printBalance(int balance)
+{
+System.out.println(" The Current Balance : " + balance);
+System.out.println();
+}
+// The function to Withdraw an amount and update the balance
+public static int withdraw(int balance, int withdrawAmount)
+{
+System.out.println( "Withdrawn Operation :" );
+System.out.println("The withdrawing Amount is : " + withdrawAmount);
+if (balance >= withdrawAmount) {
+balance = balance - withdrawAmount;
+System.out.println( "Please collect your money and remove the card" );
+printBalance( balance );
+}
+else {
+System.out.println( "Sorry! the balanace is insufficient." );
+System.out.println( );
+}
+return balance;
+}
+// The function to deposit an amount and update the balance
+public static int deposit(int balance, int depositAmount)
+{
+System.out.println( "Deposit Operation :" );
+System.out.println(" The depositing amount is : " + depositAmount);
+balance = balance + depositAmount;
+System.out.println( "Your Money has been successfully deposited" );
+printBalance(balance);
+return balance;
+}
+}
+
+
+/*As in the above program, the ATM class is created which contains withdraw(), deposit() and printbalance() functions. The withdraw() function is used to perform the withdraw operation; this function accepts the balance and the withdrawn amount. Inside the withdraw() function, first check whether the balance is greater than the withdraw amount or not; when it is true, then update the balance by subtracting the withdraw amount from the balance. Next, the function deposit() is used to performs the deposit operation; this function accepts the balance and the deposit amount.
+
+Inside the deposit() function, it updates the balance by adding the deposit amount to the balance. Next, the printbalance() function is used to print the balance; it accepts the balance. Then, in the main function, a balance variable of an integer is created. Next, printing the selecting pitons for withdrawing, deposit, balance, and exit operations, depending on the specific option selection the case gets to execute, as we can see in the above output.
+
+Conclusion
+An automated teller machine (ATM) is an electronic telecommunications system that allows customers of banking firms to conduct financial transactions. We can create an ATM program in Java to display ATM transactions, and the user can withdraw money, deposit money, check the balance, and exit from the ATM.*/

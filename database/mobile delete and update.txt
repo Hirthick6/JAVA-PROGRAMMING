@@ -1,0 +1,28 @@
+// Updating the price of a specific mobile model
+String updatePriceSQL = "UPDATE mobile SET price = ? WHERE model_id = ?";
+PreparedStatement updatePriceStatement = connection.prepareStatement(updatePriceSQL);
+updatePriceStatement.setDouble(1, newPrice); // Set the new price
+updatePriceStatement.setInt(2, modelId); // Specify the model ID of the mobile to update
+updatePriceStatement.executeUpdate();
+
+// Deleting a specific mobile model
+String deleteMobileSQL = "DELETE FROM mobile WHERE model_id = ?";
+PreparedStatement deleteMobileStatement = connection.prepareStatement(deleteMobileSQL);
+deleteMobileStatement.setInt(1, modelId); // Specify the model ID of the mobile to delete
+deleteMobileStatement.executeUpdate();
+
+// Updating the price of a specific mobile model
+double newPrice = 4500.00; // New price
+int modelIdToUpdate = 1; // Model ID of the mobile to update
+String updatePriceSQL = "UPDATE mobile SET price = ? WHERE model_id = ?";
+PreparedStatement updatePriceStatement = connection.prepareStatement(updatePriceSQL);
+updatePriceStatement.setDouble(1, newPrice);
+updatePriceStatement.setInt(2, modelIdToUpdate);
+updatePriceStatement.executeUpdate();
+
+// Deleting a specific mobile model
+int modelIdToDelete = 2; // Model ID of the mobile to delete
+String deleteMobileSQL = "DELETE FROM mobile WHERE model_id = ?";
+PreparedStatement deleteMobileStatement = connection.prepareStatement(deleteMobileSQL);
+deleteMobileStatement.setInt(1, modelIdToDelete);
+deleteMobileStatement.executeUpdate();
